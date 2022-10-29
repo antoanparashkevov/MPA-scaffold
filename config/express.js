@@ -1,5 +1,6 @@
 const express = require('express');
 const handlebars = require('express-handlebars');
+const cookieParser = require('cookie-parser');
 
 //Import Middlewares
 const titleMiddleware = require('../middlewares/title');
@@ -15,6 +16,7 @@ module.exports = (app) => {
     //Embedded Middlewares
     app.use('/static', express.static('static'));
     app.use(express.urlencoded({extended: true}));
+    app.use(cookieParser());
     
     //Application Middlewares
     app.use(titleMiddleware('Default page'))

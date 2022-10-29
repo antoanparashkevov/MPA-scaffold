@@ -18,14 +18,15 @@ router.post('/register', async (req,res) => {
         throw new Error("The password doesn't match!")
     }
     
-    if(!formData.username || !formData.password || !formData.repass) {
+    if(!formData.username || !formData.password || !formData.repass || !formData.email) {
         throw new Error("All fields are required!")
     }
     
     //the json web token
-    const token = await register(formData.username, formData.password);
+    const token = await register(formData.username, formData.email, formData.password);
     
-    //TODO create a cookie with the given token from the AuthService
+    //set as a cookie our JSON Web Token
+    res.cookie('token', token);
     
     res.redirect('/auth/register')//if we don't redirect, it will load the page forever
 })
