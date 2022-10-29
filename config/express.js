@@ -4,12 +4,13 @@ const cookieParser = require('cookie-parser');
 
 //Import Middlewares
 const titleMiddleware = require('../middlewares/title');
-const session = require('../middlewares/session')
+const session = require('../middlewares/session');
+const trim = require('../middlewares/trim');
 
 module.exports = (app) => {
     const hbs = handlebars.create({
         extname: '.hbs'
-    })
+    });
     app.engine('.hbs', hbs.engine);
     app.set('view engine', '.hbs');
     
@@ -21,4 +22,5 @@ module.exports = (app) => {
     //Application Middlewares
     app.use(titleMiddleware('Default page'));
     app.use(session());
+    app.use(trim());
 }
