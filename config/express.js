@@ -1,6 +1,9 @@
 const express = require('express');
 const handlebars = require('express-handlebars');
 
+//Import Middlewares
+const titleMiddleware = require('../middlewares/title');
+
 
 module.exports = (app) => {
     const hbs = handlebars.create({
@@ -9,7 +12,10 @@ module.exports = (app) => {
     app.engine('.hbs', hbs.engine);
     app.set('view engine', '.hbs');
     
-    //embedded middlewares
+    //Embedded Middlewares
     app.use('/static', express.static('static'));
     app.use(express.urlencoded({extended: true}));
+    
+    //Application Middlewares
+    app.use(titleMiddleware())
 }
