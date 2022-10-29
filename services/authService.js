@@ -25,7 +25,7 @@ async function register(username, email, password) {
     
 }
 
-async function login(username, hashedPassword) {
+async function login(username,email, hashedPassword) {
     
 }
 

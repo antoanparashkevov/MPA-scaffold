@@ -30,7 +30,7 @@ router.post('/register', async (req,res) => {
             //set as a cookie our JSON Web Token
             res.cookie('token', token);
     
-            res.redirect('/auth/register')//if we don't redirect, it will load the page forever}
+            res.redirect('/')//if we don't redirect, it will load the page forever}
         } catch (error) {
             const errors = parseError(error);
             
@@ -44,6 +44,47 @@ router.post('/register', async (req,res) => {
                 }
             })
         }
+})
+
+router.get('/login', (req,res) => {
+    //TODO replace with actual with as in the assignment
+    res.render('pages/login', {
+        title: 'Login page'
+    })
+})
+
+router.get('/login', async (req,res) => {
+    const formData = req.body;
+    //TODO remove the log
+    console.log('formData from the login form >>> ', formData)
+
+    try {
+        //TODO change the error handling to correspond to the assignment
+
+        if (!formData.username || !formData.password || !formData.email) {
+            throw new Error("All fields are required!")
+        }
+        
+        //the json web token
+        const token = await login(formData.username, formData.email, formData.password);
+
+        //set as a cookie our JSON Web Token
+        res.cookie('token', token);
+
+        res.redirect('/')//if we don't redirect, it will load the page forever}
+    } catch (error) {
+        const errors = parseError(error);
+
+        //TODO add error display to the actual template from the assignment
+        res.render('pages/login', {
+            title: 'Login page',
+            errors,
+            body: {
+                email: formData.email,
+                username: formData.username
+            }
+        })
+    }
 })
 
 module.exports = router;
