@@ -25,6 +25,7 @@ router.post('/register', async (req,res) => {
             }
     
             //the json web token
+            //TODO see the assignment if the registration will create the user session
             const token = await register(formData.username, formData.email, formData.password);
     
             //set as a cookie our JSON Web Token
@@ -53,7 +54,7 @@ router.get('/login', (req,res) => {
     })
 })
 
-router.get('/login', async (req,res) => {
+router.post('/login', async (req,res) => {
     const formData = req.body;
     //TODO remove the log
     console.log('formData from the login form >>> ', formData)
@@ -71,6 +72,7 @@ router.get('/login', async (req,res) => {
         //set as a cookie our JSON Web Token
         res.cookie('token', token);
 
+        //TODO replace with the redirect from the assignment
         res.redirect('/')//if we don't redirect, it will load the page forever}
     } catch (error) {
         const errors = parseError(error);

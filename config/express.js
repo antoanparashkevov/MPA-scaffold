@@ -4,7 +4,7 @@ const cookieParser = require('cookie-parser');
 
 //Import Middlewares
 const titleMiddleware = require('../middlewares/title');
-
+const session = require('../middlewares/session')
 
 module.exports = (app) => {
     const hbs = handlebars.create({
@@ -19,5 +19,6 @@ module.exports = (app) => {
     app.use(cookieParser());
     
     //Application Middlewares
-    app.use(titleMiddleware('Default page'))
+    app.use(titleMiddleware('Default page'));
+    app.use(session());
 }

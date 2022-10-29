@@ -25,8 +25,21 @@ async function register(username, email, password) {
     
 }
 
-async function login(username,email, hashedPassword) {
+async function login(username,email, password) {
+    const user = await User.findOne({username }).collation({locale: 'en', strength: 2})
+    if(!user) {
+        throw new Error('Incorrect username or password');
+    }
+    const hasMatch = await bcrypt.compare(password, user.hashedPassword);
     
+    if(!hasMatch) {
+        throw new Error('Incorrect username or password');
+    }
+
+    console.log('Data from login form to the Database >>> ', user)
+
+
+    return createSession(user)
 }
 
 //TODO logout action will be located in the controller, not here.
@@ -40,8 +53,9 @@ function createSession({_id, username,email}) {
     }, JWT_SECRET)
 }
 
-function verifySession() {
-    
+function verifySession(token) {
+    //will return the userData
+    return jwt.verify(token,JWT_SECRET);
 }
 
 module.exports = {
