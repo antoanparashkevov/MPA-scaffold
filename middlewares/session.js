@@ -6,6 +6,7 @@ module.exports = () => (req,res,next)=> {
         try {
             const userData = verifySession(token)
             req.user = userData;
+            console.log('Verified User Data >>> ', req.user)
         } catch (err) {
             //in case the cookie is invalid
             res.clearCookie('token');
