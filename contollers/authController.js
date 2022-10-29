@@ -39,6 +39,7 @@ router.post('/register', async (req,res) => {
                 title: 'Register page',
                 errors,
                 body: {
+                    email: formData.email,
                     username: formData.username
                 }
             })
