@@ -14,6 +14,13 @@
     <li><a href="/auth/logout">Logout</a></li>
         </ul>
     </nav>
+    {{#if errors}}
+    <!-- an array full of strings, so we use this to render each element-->
+        {{#each errors}}
+            {{this}}
+        {{/each}}
+    {{/if}}
+     
         {{{body}}}
 </body>
 </html>
