@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const {login, register} = require('../services/authService')
+const {parseError} = require("../util/parser");
 
 router.get('/register', (req,res) => {
     //TODO replace with actual with as in the assignment
@@ -31,8 +32,8 @@ router.post('/register', async (req,res) => {
     
             res.redirect('/auth/register')//if we don't redirect, it will load the page forever}
         } catch (error) {
-            //TODO parse the error obj
-            const errors = [error.message]
+            const errors = parseError(error);
+            
             //TODO add error display to the actual template from the assignment
             res.render('pages/register', {
                 title: 'Register page',
