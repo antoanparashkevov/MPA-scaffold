@@ -22,5 +22,5 @@ module.exports = (app) => {
     //Application Middlewares
     app.use(titleMiddleware('Default page'));
     app.use(session());
-    app.use(trim());
+    app.use(trim('password'));
 }
