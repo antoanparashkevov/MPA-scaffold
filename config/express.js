@@ -17,5 +17,5 @@ module.exports = (app) => {
     app.use(express.urlencoded({extended: true}));
     
     //Application Middlewares
-    app.use(titleMiddleware())
+    app.use(titleMiddleware('Default page'))
 }

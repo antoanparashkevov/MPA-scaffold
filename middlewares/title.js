@@ -1,4 +1,4 @@
-module.exports = () => (req,res,next) =>{
-    res.locals.title = 'Default page';
+module.exports = (title) => (req,res,next) =>{
+    res.locals.title = title;
     next();
 }
