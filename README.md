@@ -1,7 +1,7 @@
-#REST API
+# REST API
 This is a basic rest service scaffold which can be used as a Rest API for any SPA application. It is flexible to extend it a different ways
 
-#Table of contents
+# Table of contents
 - <a href="#project-structure">Project Structure</a>
 - <a href="#tools">Tools</a>
 
