@@ -10,7 +10,7 @@ function isUser(){
 
 function isGuest() {
     return (req,res,next) => {
-        if(!req.user) {
+        if( req.user ) {
             return res.redirect('/')//TODO check the assignment for the correct redirect
         } else {
             next();

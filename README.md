@@ -1,5 +1,5 @@
 # REST API
-This is a basic rest service scaffold which can be used as a Rest API for any SPA application. It is flexible to extend it a different ways
+This is a basic MPA scaffold which can be used as a Rest API (with some additions) for any SPA application. It is flexible to extend it a different ways. Written on NodeJS with ExpressJS framework.
 
 # Table of contents
 - <a href="#project-structure">Project Structure</a>
